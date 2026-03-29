@@ -1,0 +1,189 @@
+Project Report: Sentiment Analysis Using Bayes
+
+________________________________________
+
+1. Sentiment Analysis of Text Using Bayes Algorithm
+
+________________________________________
+
+2. Objective
+The goal of this project is to build a system. It will. Classify text into positive, negative or neutral sentiments. We will use a machine learning approach.
+
+________________________________________
+
+3. In today’s world people share their opinions on social media, product reviews and feedback forms. These opinions are valuable. Analyzing them manually is time-consuming.
+Sentiment analysis helps identify the tone behind text data. This project focuses on building a sentiment analysis model. It will quickly and accurately determine whether a sentence expresses a negative or neutral feeling.
+We will use sentiment analysis to understand people’s opinions. This will help us make decisions.
+
+________________________________________
+
+4. Problem Statement
+People generate a lot of text data daily. It is hard to understand the overall sentiment. We need an automated system. It will quickly analyze text. Classify its sentiment.
+This project aims to solve this problem. We will create a machine learning model. It will process user input analyze it and predict the sentiment along with a confidence score.
+The model will help us classify text into negative or neutral sentiments.
+
+________________________________________
+
+5. Methodology
+
+5.1 Data Collection
+
+We use a dataset of manually labeled sentences:
+• Positive sentences
+• Negative Sentences
+• Neutral sentences
+The dataset is small but it will help us understand the basics of sentiment analysis.
+
+________________________________________
+
+5.2 Data Preprocessing
+• Convert text to lowercase
+• Remove punctuation
+• standardize input text
+We clean the data to remove noise. This will help the model learn better.
+
+________________________________________
+
+5.3 Feature Extraction
+We use the Bag of Words (BoW) technique:
+• Converts text into form
+• Implemented using CountVectorizer
+The BoW technique is simple and effective. It will help us understand the sentiment of text.
+
+________________________________________
+
+5.4 Model Used
+Multinomial Naive Bayes
+• Based on probability
+• for text classification
+• Works well with small datasets
+The Multinomial Naive Bayes model is suitable for text classification. It will help us classify text into negative or neutral sentiments.
+
+________________________________________
+
+5.5 Training
+• The model is trained on cleaned and labeled data
+• It learns patterns between words and sentiment
+The model learns from the data. It will help us make predictions.
+
+________________________________________
+
+5.6 Testing
+• User enters a sentence
+• The model predicts sentiment and confidence score
+The user will enter a sentence. The model will predict the sentiment and confidence score.
+
+________________________________________
+
+
+6. Implementation (Code)
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+import string
+
+# Dataset
+sentences = [
+    "I love this product",
+    "This is amazing",
+    "I feel great",
+    "I am very happy",
+    "This is bad",
+    "I hate this",
+    "This is terrible",
+    "I am sad",
+    "This is okay",
+    "It is average"
+]
+
+labels = [
+    "positive", "positive", "positive", "positive",
+    "negative", "negative", "negative", "negative",
+    "neutral", "neutral"
+]
+
+# Preprocessing function
+def clean_text(text):
+    text = text.lower().strip()
+    text = text.translate(str.maketrans('', '', string.punctuation))
+    return text
+
+# Clean dataset
+cleaned_sentences = [clean_text(s) for s in sentences]
+
+# Feature extraction
+vectorizer = CountVectorizer()
+X = vectorizer.fit_transform(cleaned_sentences)
+
+# Train model
+model = MultinomialNB()
+model.fit(X, labels)
+
+# User input
+user_input = input("Enter a sentence: ")
+
+if not user_input.strip():
+    print("Please enter valid text.")
+else:
+    user_input = clean_text(user_input)
+    X_test = vectorizer.transform([user_input])
+
+    prediction = model.predict(X_test)[0]
+    confidence = model.predict_proba(X_test).max()
+
+    print(f"Sentiment: {prediction}")
+    print(f"Confidence: {confidence:.2f}")
+
+________________________________________
+
+7. Results
+The model successfully classifies text into:
+• Positive
+•Negative
+• Neutral
+
+For example:
+• Input: I love this product → Positive
+• Input: This is terrible → Negative
+The model works well for sentences.
+________________________________________
+
+8. Advantages
+• Simple and easy to implement
+•Fast and efficient
+• Works well for basic sentiment tasks
+The model is simple and efficient. It will help us understand the basics of sentiment analysis.
+
+________________________________________
+
+9. Limitations
+• Small dataset limits accuracy
+• Cannot understand sarcasm or complex sentences
+• Basic NLP techniques used
+The model has limitations. We will improve it in the future.
+
+________________________________________
+
+10. Future Scope
+• Use datasets (IMDb, Twitter)
+• Apply advanced techniques like TF-IDF
+• Implement deep learning models (LSTM, BERT)
+• Build a web or mobile application
+
+We will improve the model in the future. It will help us make predictions.
+
+________________________________________
+
+11. This project demonstrates how machine learning can be used to analyze text and determine sentiment. Although simple it provides a foundation, for understanding NLP and classification techniques. With improvements it can be developed into a more powerful and accurate system.
+
+The model is a starting point. We will improve it over time.
+________________________________________
+
+12. References
+• Scikit-learn documentation
+• NLP. Online resources
+________________________________________
+
+
+13. Author
+Subhradip Roy
+25BAI10130
